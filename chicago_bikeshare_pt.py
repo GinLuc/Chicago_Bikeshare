@@ -3,6 +3,10 @@
 # Começando com os imports
 import csv
 import matplotlib.pyplot as plt
+import csv
+import datetime
+import pprint
+import time
 
 # Vamos ler os dados como uma lista
 print("Lendo o documento...")
