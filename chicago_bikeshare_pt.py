@@ -30,10 +30,11 @@ input("Aperte Enter para continuar...")
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
-data_list = data_list[1:]
 
-print(data_list[0:19])
 
+data_list_20 = data_list[1:19]
+
+print("20 Amostras: ", data_list_20)
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
 
@@ -42,10 +43,11 @@ input("Aperte Enter para continuar...")
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
-
-
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
+
+for index in data_list_20:
+        print ("Generos das 20 amostras:", data_list_20.index(data_list["Gender"]))
 
 input("Aperte Enter para continuar...")
 # TAREFA 3
@@ -191,15 +193,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 11
 # Volte e tenha certeza que você documenteou suas funções. Explique os parâmetros de entrada, a saída, e o que a função faz. Exemplo:
 # def new_function(param1: int, param2: str) -> list:
-#     """
- #     Função de exemplo com anotações.
-  #    Argumentos:
-   #       param1: O primeiro parâmetro.
-    #      param2: O segundo parâmetro.
-     # Retorna:
-      #    Uma lista de valores x.
-#
- #     """
+"""
+      Função de exemplo com anotações.
+      Argumentos:
+          param1: O primeiro parâmetro.
+          param2: O segundo parâmetro.
+      Retorna:
+          Uma lista de valores x.
+
+"""
 
 input("Aperte Enter para continuar...")
 # TAREFA 12 - Desafio! (Opcional)
