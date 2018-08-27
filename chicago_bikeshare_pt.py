@@ -32,9 +32,11 @@ print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 # Vamos mudar o data_list para remover o cabeçalho dele.
 
 
-data_list_20 = data_list[1:19]
+data_list_20 = data_list[1:21]
 
-print("20 Amostras: ", data_list_20)
+print("20 Amostras:\n\n")
+for index in data_list_20:    
+    print ("Amostra", (data_list_20.index(index) + 1), ": ", index, "\n")
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
 
@@ -45,9 +47,9 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
+indice_genero = data_list[0].index("Gender")
 
-for index in data_list_20:
-        print ("Generos das 20 amostras:", data_list_20.index(data_list["Gender"]))
+print ("Generos das 20 amostras:", data_list_20[data_list_20.index(indice_genero)])
 
 input("Aperte Enter para continuar...")
 # TAREFA 3
