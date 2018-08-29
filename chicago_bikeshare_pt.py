@@ -30,13 +30,13 @@ input("Aperte Enter para continuar...")
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
-
+#data_list = data_list[1:]
 
 data_list_20 = data_list[1:21]
 
 print("20 Amostras:\n\n")
 for index in data_list_20:    
-    print ("Amostra", (data_list_20.index(index) + 1), ": ", index, "\n")
+    print("Amostra", (data_list_20.index(index) + 1), ": ", index, "\n")
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
     
@@ -52,7 +52,7 @@ print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 indice_genero = data_list[0].index("Gender")
 
 for i in range(0,len(data_list_20)):
-    print ("Generos das 20 amostras:", data_list_20[i][indice_genero])
+    print("Amostra", (i+1), ":", data_list_20[i][indice_genero])
     
 input("Aperte Enter para continuar...")
 # TAREFA 3
@@ -60,6 +60,9 @@ input("Aperte Enter para continuar...")
 def column_to_list(data, index):
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
+    for i in data:
+        column_list.append(i[index])
+            
     return column_list
 
 
@@ -76,10 +79,13 @@ assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[
 input("Aperte Enter para continuar...")
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
-# TODO: Conte cada gênero. Você não deveria usar uma função parTODO isso.
+# TODO: Conte cada gênero. Você não deveria usar uma função para isso.
+
 male = 0
 female = 0
 
+male = data_list_20.count("Male")
+female = data_list_20.count("Female")
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
