@@ -34,7 +34,7 @@ print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 
 data_list_20 = data_list[1:21]
 
-print("20 Amostras:\n\n")
+
 for index in data_list_20:    
     print("Amostra", (data_list_20.index(index) + 1), ": ", index, "\n")
 # Nós podemos acessar as features pelo índice
@@ -60,7 +60,7 @@ input("Aperte Enter para continuar...")
 def column_to_list(data, index):
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    column_list.append(index)
+   
     for i in data:
         column_list.append(i[index])
             
