@@ -90,6 +90,8 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
+#Método de usar o .count para matrizes!!! 
+
 male = data_list.count('Male')
 female = data_list.count('Female')
 
