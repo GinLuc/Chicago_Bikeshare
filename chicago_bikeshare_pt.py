@@ -19,6 +19,7 @@ print(len(data_list))
 print("Linha 0: ")
 print(data_list[0])
 # É o cabeçalho dos dados, para que possamos identificar as colunas.
+data_columns = data_list[0]
 
 # Imprimindo a segunda linha de data_list, ela deveria conter alguns dados
 print("Linha 1: ")
@@ -30,17 +31,20 @@ input("Aperte Enter para continuar...")
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
-#data_list = data_list[1:]
+data_list = data_list[1:]
+#data_list_20 = []
 
-data_list_20 = data_list[1:21]
 
-
-for index in data_list_20:    
-    print("Amostra", (data_list_20.index(index) + 1), ": ", index, "\n")
+for index in data_list:    
+    if data_list.index(index) < 20:
+        print("Amostra", (data_list.index(index) + 1), ": ", index, "\n")
+        #data_list_20.append(index)
+    
+    else:
+        break
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
-    
-
+#print(len(data_list_20))
 
 input("Aperte Enter para continuar...")
 # TAREFA 2
@@ -49,10 +53,11 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
-indice_genero = data_list[0].index("Gender")
 
-for i in range(0,len(data_list_20)):
-    print("Amostra", (i+1), ":", data_list_20[i][indice_genero])
+indice_genero = data_columns.index("Gender")
+
+for i in range(0,len(data_list[:20])):
+    print("Amostra", (i+1), ":", data_list[i][indice_genero])
     
 input("Aperte Enter para continuar...")
 # TAREFA 3
@@ -85,8 +90,8 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
-male = data_list_20.count("Male")
-female = data_list_20.count("Female")
+male = data_list.count('Male')
+female = data_list.count('Female')
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
