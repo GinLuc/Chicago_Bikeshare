@@ -18,6 +18,7 @@ print(len(data_list))
 # Imprimindo a primeira linha de data_list para verificar se funcionou.
 print("Linha 0: ")
 print(data_list[0])
+
 # É o cabeçalho dos dados, para que possamos identificar as colunas.
 data_columns = data_list[0]
 
@@ -28,17 +29,17 @@ print(data_list[1])
 input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
-print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
+print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras\n")
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
-#data_list_20 = []
+
 
 
 for index in data_list:    
     if data_list.index(index) < 20:
         print("Amostra", (data_list.index(index) + 1), ": ", index, "\n")
-        #data_list_20.append(index)
+        
     
     else:
         break
@@ -54,6 +55,7 @@ print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
 
+#Variável criada para armazenar o índice do campo "Gender"
 indice_genero = data_columns.index("Gender")
 
 for i in range(0,len(data_list[:20])):
@@ -90,14 +92,17 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
+#Variável vaizo armazena os espaços NULL presentes no campo Gender
+vazio = 0
+
 #Método de usar o .count para matrizes!!! 
-
-male = data_list.count('Male')
-female = data_list.count('Female')
-
+for i in range(0, len(data_list)):
+    male += data_list[i][indice_genero].count('Male')
+    female += data_list[i][indice_genero].count('Female')
+    vazio += data_list[i][indice_genero].count('')
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
-print("Masculinos: ", male, "\nFemininos: ", female)
+print("Masculinos: ", male, "\nFemininos: ", female, "\nVazios: ", vazio)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
@@ -111,6 +116,13 @@ input("Aperte Enter para continuar...")
 def count_gender(data_list):
     male = 0
     female = 0
+ 
+    for i in range(0, len(data_list)):
+        if data_list[i][indice_genero] == 'Male' or data_list[i][indice_genero] == 'male':
+            male += 1
+        elif data_list[i][indice_genero] == 'Female' or data_list[i][indice_genero] == 'female':  
+            female += 1
+            
     return [male, female]
 
 
@@ -130,6 +142,16 @@ input("Aperte Enter para continuar...")
 # Esperamos ver "Masculino", "Feminino", ou "Igual" como resposta.
 def most_popular_gender(data_list):
     answer = ""
+    generos = count_gender(data_list)
+   
+    # Checagem de Qunatidade de vezes que aparecem cada Gênero
+    if generos[0] > generos[1]:
+        answer = "Masculino"
+    elif generos[0] < generos[1]:
+        answer = "Feminino"
+    else:
+        answer = "Igual"
+    
     return answer
 
 
@@ -156,8 +178,34 @@ plt.show(block=True)
 input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
-print("\nTAREFA 7: Verifique o gráfico!")
 
+#Variável semelhante ao indice_genero, porém para armazenar o índice do User Type
+indice_usertype = data_columns.index("User Type")
+
+
+#Função semelhante ao "count_gender", porém para contar os User types
+def count_usertype(data_list):
+    subscriber = 0
+    customer = 0
+    for i in range(0, len(data_list)):
+        if data_list[i][indice_usertype] == 'Subscriber' or data_list[i][indice_genero] == 'subscriber':
+            subscriber += 1
+        elif data_list[i][indice_usertype] == 'Customer' or data_list[i][indice_genero] == 'customer':  
+            customer += 1
+    return [subscriber, customer]
+
+
+print("\nTAREFA 7: Verifique o gráfico!")
+gender_list = column_to_list(data_list, indice_usertype)
+types = ["Subscriber", "Customer"]
+quantity = count_usertype(data_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('User Types')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por User Type')
+plt.show(block=True)
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
@@ -165,8 +213,10 @@ input("Aperte Enter para continuar...")
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Escreva sua resposta aqui."
-print("resposta:", answer)
+answer = "Essa resposta é invalida pois há espaços que não possuem resposta alguma, contendo apenas o NULL.\n" + \
+"Portanto, a soma das respostas 'Male','Female' e os espaços que contém NULL dá o total do tamanho do data_list"
+
+print("resposta:", answer, male + female + vazio == len(data_list))
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
