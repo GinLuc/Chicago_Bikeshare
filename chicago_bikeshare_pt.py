@@ -100,6 +100,13 @@ for i in range(0, len(data_list)):
     male += data_list[i][indice_genero].count('Male')
     female += data_list[i][indice_genero].count('Female')
     vazio += data_list[i][indice_genero].count('')
+    
+#Por que que a variável VAZIO com auto incremental retorna uma valor muito grande, porém com atribuição simples
+#ela retorna o valor corretamente, enquanto que as variáveis MALE e FEMALE usam auto incremento pois a atribuição simples
+#não funciona?? (usado amostra de até 20 para essa análise)
+
+
+     
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
 print("Masculinos: ", male, "\nFemininos: ", female, "\nVazios: ", vazio)
@@ -216,7 +223,7 @@ print("male + female == len(data_list):", male + female == len(data_list))
 answer = "Essa resposta é invalida pois há espaços que não possuem resposta alguma, contendo apenas o NULL.\n" + \
 "Portanto, a soma das respostas 'Male','Female' e os espaços que contém NULL dá o total do tamanho do data_list"
 
-print("resposta:", answer, male + female + vazio == len(data_list))
+print("resposta:", answer, "\n\nmale + female + vazio == len(data_list):", male + female + vazio == len(data_list))
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
@@ -227,12 +234,79 @@ input("Aperte Enter para continuar...")
 # TAREFA 9
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
 # Você não deve usar funções prontas parTODO isso, como max() e min().
-trip_duration_list = column_to_list(data_list, 2)
-min_trip = 0.
-max_trip = 0.
-mean_trip = 0.
-median_trip = 0.
 
+#Variável responsável por armazenar a posição do campo "Trip Duration"
+indice_trip = data_columns.index('Trip Duration')
+
+#Função para poder pegar e retornar o valor máximo de uma lista
+def get_max(data_list):
+    max_trip = 0
+    
+    for i in data_list:
+        if int(i) > max_trip:
+            max_trip = int(i)
+            
+    return max_trip
+
+#Função para poder pegar e retornar o valor mínimo de uma lista
+def get_min(data_list):
+    #Captura do maior valor para que a condição seja verdadeira
+    min_trip = get_max(data_list)
+
+    for i in data_list:    
+        if int(i) < min_trip:
+            min_trip = int(i)
+            
+    return min_trip
+
+#Função para retornar a média entre os valores de uma lista
+def get_mean(data_list):
+    mean_trip = 0.
+    sum_trip = 0
+    
+    for i in data_list:
+        sum_trip += int(i)
+    
+    mean_trip = sum_trip / len(data_list)
+    
+    return int(mean_trip)
+
+#Função para retornar a mediana entre os valores de uma lista
+def get_median(data_list):
+    median_trip = 0.
+    center = 0
+    
+    #Verificando se a lista é par
+    if len(data_list) % 2 == 0:
+        
+        #variavel para a localização de um dos termos próximos à posição central da lista par
+        c1 = len(data_list) // 2
+        #Variável para a localização do outro termo próximo à posição central
+        c2 = c1 + 1
+        
+        #Achando o termo central, sendo a média entre os dois termos próximos a ele
+        center = (c1 + c2) / 2
+        
+        median_trip = int(data_list[center])
+    
+    #Caso a lista seja ímpar
+    else:
+        #Variável criada para pegar o termo central da lista ímpar, sendo único
+        center = int((len(data_list) + 1) / 2)
+        median_trip = int(data_list[center])
+    
+    return median_trip
+
+trip_duration_list = column_to_list(data_list, 2)
+min_trip = 0
+max_trip = 0
+mean_trip = 0
+median_trip = 0
+
+min_trip = get_min(trip_duration_list)
+max_trip = get_max(trip_duration_list)
+mean_trip = get_mean(trip_duration_list)
+median_trip = get_median(trip_duration_list)
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
