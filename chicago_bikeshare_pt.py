@@ -64,6 +64,16 @@ for i in range(0,len(data_list[:20])):
 input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
+
+"""
+     Função de Criar Lista a partir de outra Lista.
+     Argumentos:
+     param1: lista
+     param2: valor numérico que será puxada da Lista para criar a outra
+     Retorna:
+     A lista criada a partir da outra passada no param1
+"""
+
 def column_to_list(data, index):
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
@@ -92,14 +102,13 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
-#Variável vaizo armazena os espaços NULL presentes no campo Gender
-vazio = 0
+
 
 #Método de usar o .count para matrizes!!! 
 for i in range(0, len(data_list)):
     male += data_list[i][indice_genero].count('Male')
     female += data_list[i][indice_genero].count('Female')
-    vazio += data_list[i][indice_genero].count('')
+    
     
 #Por que que a variável VAZIO com auto incremental retorna uma valor muito grande, porém com atribuição simples
 #ela retorna o valor corretamente, enquanto que as variáveis MALE e FEMALE usam auto incremento pois a atribuição simples
@@ -109,7 +118,7 @@ for i in range(0, len(data_list)):
      
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
-print("Masculinos: ", male, "\nFemininos: ", female, "\nVazios: ", vazio)
+print("Masculinos: ", male, "\nFemininos: ", female)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
@@ -120,10 +129,19 @@ input("Aperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
+
+"""
+  Função de Contagem de Generos.
+  Argumentos:
+  param1: lista
+  Retorna:
+  Um valor inteiro que representa a quantidade de vazios encontrados.
+"""
+
 def count_gender(data_list):
     male = 0
     female = 0
- 
+
     for i in range(0, len(data_list)):
         if data_list[i][indice_genero] == 'Male' or data_list[i][indice_genero] == 'male':
             male += 1
@@ -131,6 +149,10 @@ def count_gender(data_list):
             female += 1
             
     return [male, female]
+
+
+
+
 
 
 print("\nTAREFA 5: Imprimindo o resultado de count_gender")
@@ -147,6 +169,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 6
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Masculino", "Feminino", ou "Igual" como resposta.
+
+"""
+     Função de Análise de qual valor aparece mais na Lista.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Uma String que retorna se o aparece o gênero Feminino, Masculino ou Igual.
+"""
+
 def most_popular_gender(data_list):
     answer = ""
     generos = count_gender(data_list)
@@ -189,8 +220,14 @@ input("Aperte Enter para continuar...")
 #Variável semelhante ao indice_genero, porém para armazenar o índice do User Type
 indice_usertype = data_columns.index("User Type")
 
+"""
+     Função de Contagem dos Tipos de Usuários.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Uma lista com dois valores numéricos, sendo as quantidades dos dois tipos de usuários que o arquivo possui.
+    """
 
-#Função semelhante ao "count_gender", porém para contar os User types
 def count_usertype(data_list):
     subscriber = 0
     customer = 0
@@ -223,7 +260,7 @@ print("male + female == len(data_list):", male + female == len(data_list))
 answer = "Essa resposta é invalida pois há espaços que não possuem resposta alguma, contendo apenas o NULL.\n" + \
 "Portanto, a soma das respostas 'Male','Female' e os espaços que contém NULL dá o total do tamanho do data_list"
 
-print("resposta:", answer, "\n\nmale + female + vazio == len(data_list):", male + female + vazio == len(data_list))
+print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert answer != "Escreva sua resposta aqui.", "TAREFA 8: Escreva sua própria resposta!"
@@ -238,7 +275,14 @@ input("Aperte Enter para continuar...")
 #Variável responsável por armazenar a posição do campo "Trip Duration"
 indice_trip = data_columns.index('Trip Duration')
 
-#Função para poder pegar e retornar o valor máximo de uma lista
+"""
+     Função de Achar o Maior Valor.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Um valor inteiro que representa o maior valor encontrado na lista passada.
+"""
+
 def get_max(data_list):
     max_trip = 0
     
@@ -248,7 +292,13 @@ def get_max(data_list):
             
     return max_trip
 
-#Função para poder pegar e retornar o valor mínimo de uma lista
+"""
+     Função de Achar o Menor Valor.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Um valor inteiro que representa o menor valor encontrado na lista passada.
+"""
 def get_min(data_list):
     #Captura do maior valor para que a condição seja verdadeira
     min_trip = get_max(data_list)
@@ -259,7 +309,14 @@ def get_min(data_list):
             
     return min_trip
 
-#Função para retornar a média entre os valores de uma lista
+"""
+     Função de Achar a Média.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Um valor inteiro que representa a média encontrada na lista passada.
+"""
+ 
 def get_mean(data_list):
     mean_trip = 0.
     sum_trip = 0
@@ -269,31 +326,47 @@ def get_mean(data_list):
     
     mean_trip = sum_trip / len(data_list)
     
-    return int(mean_trip)
+#Função para arredondamento de valores decimais
+    return round(mean_trip, 0)
 
-#Função para retornar a mediana entre os valores de uma lista
-def get_median(data_list):
-    median_trip = 0.
-    center = 0
+"""
+     Função de Achar a Mediana.
+     Argumentos:
+     param1: lista
+     Retorna:
+     Um valor inteiro que representa a mediana encontrada na lista passada.
+
+"""
     
+def get_median(data_list):
+    median_trip = 0
+    center = 0.
+    lista_ordenada = []
+    
+    #Função para retornar uma cópia da lista, porém em ordem crescente = Rol da amostra!!!
+    lista_ordenada = sorted(data_list)
+    tamanho_lista = len(lista_ordenada)
+    print(tamanho_lista)
     #Verificando se a lista é par
-    if len(data_list) % 2 == 0:
-        
-        #variavel para a localização de um dos termos próximos à posição central da lista par
-        c1 = len(data_list) // 2
+    if tamanho_lista % 2 == 0:
+                
+        #Variável para a localização de um dos termos próximos à posição central da lista par
+        c1 = tamanho_lista // 2
         #Variável para a localização do outro termo próximo à posição central
         c2 = c1 + 1
         
         #Achando o termo central, sendo a média entre os dois termos próximos a ele
         center = (c1 + c2) / 2
         
-        median_trip = int(data_list[center])
+        median_trip = int(lista_ordenada[center])
     
     #Caso a lista seja ímpar
     else:
+        
         #Variável criada para pegar o termo central da lista ímpar, sendo único
-        center = int((len(data_list) + 1) / 2)
-        median_trip = int(data_list[center])
+        center = ((tamanho_lista + 1) // 2)
+        print(center)
+        median_trip = int(lista_ordenada[center])
     
     return median_trip
 
@@ -307,6 +380,8 @@ min_trip = get_min(trip_duration_list)
 max_trip = get_max(trip_duration_list)
 mean_trip = get_mean(trip_duration_list)
 median_trip = get_median(trip_duration_list)
+#median_trip = 670
+
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
@@ -322,7 +397,12 @@ input("Aperte Enter para continuar...")
 # TAREFA 10
 # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
-user_types = set()
+
+
+#Variável responsável por armazenar a posição do campo "Start Station"
+indice_start_station = data_columns.index('Start Station')
+
+user_types = set(column_to_list(data_list, indice_start_station))
 
 print("\nTAREFA 10: Imprimindo as start stations:")
 print(len(user_types))
@@ -356,6 +436,9 @@ answer = "no"
 def count_items(column_list):
     item_types = []
     count_items = []
+    
+    item_types = set(column_list)
+    
     return item_types, count_items
 
 
