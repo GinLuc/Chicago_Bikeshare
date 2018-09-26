@@ -3,6 +3,7 @@
 # Começando com os imports
 import csv
 import matplotlib.pyplot as plt
+import math
 
 # Vamos ler os dados como uma lista
 print("Lendo o documento...")
@@ -339,14 +340,14 @@ def get_mean(data_list):
 """
     
 def get_median(data_list):
-    median_trip = 0
-    center = 0.
-    lista_ordenada = []
+    median_trip = 0.
+
+    lista_ordenada = list(map(int, data_list))
     
     #Função para retornar uma cópia da lista, porém em ordem crescente = Rol da amostra!!!
-    lista_ordenada = sorted(data_list)
+    lista_ordenada = sorted(lista_ordenada)
     tamanho_lista = len(lista_ordenada)
-    print(tamanho_lista)
+    print(lista_ordenada[775740:((tamanho_lista+1)//2) - 1])
     #Verificando se a lista é par
     if tamanho_lista % 2 == 0:
                 
@@ -354,20 +355,15 @@ def get_median(data_list):
         c1 = tamanho_lista // 2
         #Variável para a localização do outro termo próximo à posição central
         c2 = c1 + 1
-        
         #Achando o termo central, sendo a média entre os dois termos próximos a ele
-        center = (c1 + c2) / 2
-        
-        median_trip = int(lista_ordenada[center])
+        median_trip = ((lista_ordenada[c1] + lista_ordenada[c2]) / 2)
     
     #Caso a lista seja ímpar
     else:
+        center = (tamanho_lista+1)//2
+        median_trip = lista_ordenada[center]
         
-        #Variável criada para pegar o termo central da lista ímpar, sendo único
-        center = ((tamanho_lista + 1) // 2)
-        print(center)
-        median_trip = int(lista_ordenada[center])
-    
+        
     return median_trip
 
 trip_duration_list = column_to_list(data_list, 2)
@@ -380,7 +376,7 @@ min_trip = get_min(trip_duration_list)
 max_trip = get_max(trip_duration_list)
 mean_trip = get_mean(trip_duration_list)
 median_trip = get_median(trip_duration_list)
-#median_trip = 670
+
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
